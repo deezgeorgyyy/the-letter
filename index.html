@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>The Letter</title>
+  <meta name="description" content="A letter, waiting to be discovered." />
+
+  <!-- Typography: Cormorant Garamond (display/letter) + EB Garamond (body) + Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient floating particles canvas, lives behind every screen -->
+  <canvas id="particles"></canvas>
+
+  <!-- ============================= -->
+  <!-- SCREEN 1 — LOADING            -->
+  <!-- ============================= -->
+  <section id="loading-screen" class="screen" aria-live="polite">
+    <div class="loading-wrap">
+      <div class="loading-glow"></div>
+      <div class="loading-mark">
+        <svg viewBox="0 0 100 100" class="seal">
+          <circle cx="50" cy="50" r="46" class="seal-ring" />
+          <path d="M50 20 L50 80 M28 42 L72 42" class="seal-mark" />
+        </svg>
+      </div>
+      <p class="loading-text">preparing something quiet<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+      <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- SCREEN 2 — PASSWORD            -->
+  <!-- ============================= -->
+  <section id="password-screen" class="screen hidden" aria-live="polite">
+    <div class="glass-card" id="password-card">
+      <p class="eyebrow">a private correspondence</p>
+      <h1 class="title-serif">The Letter</h1>
+      <p class="subtitle">You've already solved the hardest part.<br />One final step remains.</p>
+
+      <form id="password-form" autocomplete="off">
+        <div class="input-row">
+          <input
+            type="password"
+            id="password-input"
+            name="password"
+            placeholder="Enter the password"
+            aria-label="Password"
+            spellcheck="false"
+          />
+          <div class="input-underline"></div>
+        </div>
+        <button type="submit" id="unlock-btn">
+          <span class="btn-label">Unlock</span>
+          <span class="btn-shine"></span>
+        </button>
+      </form>
+
+      <p id="denied-message" class="denied-message">Access denied. The words aren't ready for you — try again.</p>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- SCREEN 3 — CINEMATIC TRANSITION -->
+  <!-- ============================= -->
+  <section id="transition-screen" class="screen hidden">
+    <div class="transition-flash"></div>
+    <p class="transition-line" id="transition-line-1">Some letters aren't simply read.</p>
+    <p class="transition-line" id="transition-line-2">They're discovered.</p>
+  </section>
+
+  <!-- ============================= -->
+  <!-- SCREEN 4 — THE LETTER         -->
+  <!-- ============================= -->
+  <section id="letter-screen" class="screen hidden">
+
+    <!-- Reading progress indicator -->
+    <div id="progress-track" aria-hidden="true">
+      <div id="progress-fill"></div>
+    </div>
+
+    <!-- Optional ambient music toggle (disabled by default, no autoplay) -->
+    <button id="music-toggle" title="Toggle music" aria-label="Toggle background music">
+      <svg viewBox="0 0 24 24" id="music-icon-on" class="music-icon">
+        <path d="M9 18V5l12-2v13" />
+        <circle cx="6" cy="18" r="3" />
+        <circle cx="18" cy="16" r="3" />
+      </svg>
+      <span class="music-slash" id="music-slash"></span>
+    </button>
+    <audio id="bg-audio" loop preload="none">
+      <!-- Replace src with your own hosted audio file to enable music -->
+      <source src="" type="audio/mpeg" />
+    </audio>
+
+    <div class="letter-container">
+
+      <header class="letter-header reveal">
+        <p class="eyebrow">for you, on your birthday</p>
+        <h1 class="letter-title">Somewhere Between<br />Every Year We've Known</h1>
+        <div class="header-divider"><span></span></div>
+      </header>
+
+      <article class="letter-body" id="letter-body">
+
+        <p class="reveal">My dearest friend,</p>
+
+        <p class="reveal">If you're reading this, it means the letter I hid in ink and shadow finally
+        found its way into your hands — and you, patient and clever as ever, found your way
+        into mine.</p>
+
+        <p class="reveal">I wanted this birthday to feel different. Not just another card that gets
+        propped on a shelf for a week and forgotten in a drawer by spring. I wanted you to
+        <em>work</em> for it a little. To hold something up to the light, to turn it over, to
+        wonder. Because that's what you've always done for the people you love — you pay
+        attention. You notice things. So I built you something that asks the same of you,
+        just this once.</p>
+
+        <div class="letter-image-placeholder reveal" aria-hidden="true">
+          <span>a photograph, waiting to be added</span>
+        </div>
+
+        <p class="reveal">I keep thinking about all the ordinary afternoons that somehow became the
+        ones I remember most. The long drives with the windows down and no destination we could
+        name. The conversations that started as nothing and ended three hours later with both of
+        us wondering where the time went. You have a way of making the unremarkable feel
+        important, just by being present for it.</p>
+
+        <p class="reveal">There's a particular kind of luck in having someone who remembers your
+        stories better than you do — who can finish your sentences not because they're
+        impatient, but because they've actually been listening, for years, quietly, the way
+        only real friends bother to.</p>
+
+        <p class="reveal">I don't say this enough, so let me say it plainly, without a joke to hide
+        behind: you have made my life warmer just by being in it. Not louder, not easier — 
+        warmer. There's a difference, and you taught it to me.</p>
+
+        <div class="letter-image-placeholder reveal" aria-hidden="true">
+          <span>a photograph, waiting to be added</span>
+        </div>
+
+        <p class="reveal">So here's to another year of terrible puns and late-night calls, of plans
+        we half-make and somehow keep, of being each other's proof that some things don't fade
+        just because time keeps moving. Here's to whatever this next year decides to throw at
+        you — I hope it's mostly good, and I hope wherever I can, I get to stand next to you
+        for it.</p>
+
+        <p class="reveal">Happy birthday. Thank you for finding this. Thank you, more than that,
+        for finding me, years ago, and staying.</p>
+
+        <p class="reveal signature">With more love than this page can hold,<br />Me</p>
+
+      </article>
+
+      <!-- Ending: final words remain centered while everything else fades -->
+      <div class="letter-ending" id="letter-ending">
+        <p class="ending-text">Some things are worth decoding twice.</p>
+        <p class="ending-sub">— happy birthday —</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
